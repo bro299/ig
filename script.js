@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pasteBtn = document.getElementById('pasteBtn');
     const submitBtn = document.getElementById('submitBtn');
     
+
     pasteBtn.addEventListener('click', (e) => {
         e.preventDefault();
         navigator.clipboard.readText()
@@ -15,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function isValidUrl(url) {
-        const facebookReelsUrlPattern = /^(https?:\/\/)?(www\.)?facebook\.com\/share\/r\/([\w-]+)/i;
-        return facebookReelsUrlPattern.test(url);
+        const tiktokUrlPattern = /^(https?:\/\/)?(?:www\.)?tiktok\.com\/(?:v|@)?([\w-]+)/i;
+        return tiktokUrlPattern.test(url);
     }
 
     submitBtn.addEventListener('click', (e) => {
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    
                 },
                 body: JSON.stringify({ url: videoUrl })
             })
@@ -49,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Failed to download video. Please try again later.');
             });
         } else {
-            alert('Please enter a valid Facebook Reels URL.');
+            alert('Please enter a valid TikTok video URL.');
         }
     });
 });
